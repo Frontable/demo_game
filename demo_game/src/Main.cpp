@@ -5,20 +5,22 @@
 
 
 #include <iostream>
-#include "ECS.h"
+#include "Game.h"
 
 
 
 int main(int argc, char* argv[]) {
     
     
-    EntityManager em;
-    ComponentManager cm;
+    Game game;
+    game.initialize();
 
-    Entity e1 = em.createEntity();
-    cm.registerComponent<Position>();
+    while (game.running())
+    {
+        game.run();
+    }
 
-    cm.addComponent(e1, Position{1,1});
+    game.shutDown();
 
     return 0;
 }
