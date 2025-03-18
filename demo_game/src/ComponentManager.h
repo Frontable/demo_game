@@ -15,28 +15,8 @@
 #include<typeinfo>
 #include"Components.h"
 #include "SDL.h"
+#include "EntityManager.h"
 
-
-constexpr uint32_t MaxComponents = 32;
-using Entity = uint32_t;
-using ComponentSignature = std::bitset<MaxComponents>;
-
-
-class EntityManager
-{
-private:
-	std::unordered_map<Entity, ComponentSignature> entitySignature;
-	std::set<Entity> availableEntities;
-	Entity nextEntity = 0;
-
-public:
-	Entity createEntity();
-
-	void deleteEntity(Entity entity);
-
-	void setSignature(Entity entity, ComponentSignature componentSignature);
-
-};
 
 class IComponentArray
 {
@@ -86,7 +66,7 @@ private:
 	std::unordered_map<size_t, std::shared_ptr<IComponentArray>> componentArray;
 
 public:
-	
+
 	template<typename T>
 	void registerComponent()
 	{
@@ -116,35 +96,6 @@ private:
 	std::shared_ptr<ComponentArray<T>> getComponentArray()
 	{
 		return std::static_pointer_cast<ComponentArray<T>>(componentArray[typeid(T).hash_code()]);
-	}
-
-};
-
-
-class System
-{
-public:
-	std::set<Entity> entities;
-	virtual void update() = 0;
-};
-
-class RenderSystem : public System
-{
-public:
-
-	SDL_Renderer* renderer;
-	ComponentManager* componentManager;
-
-	void update() override
-	{
-		for (auto& e : entities)
-		{
-
-			SDL_Rect r = componentManager->getComponent<BoxComponent>(e)->box;
-			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-			SDL_RenderDrawRect(renderer, &r);
-
-		}
 	}
 
 };

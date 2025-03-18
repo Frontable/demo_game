@@ -15,7 +15,7 @@ struct Position
 
 struct Velocity
 {
-
+	float vx, vy;
 };
 
 struct BoxComponent

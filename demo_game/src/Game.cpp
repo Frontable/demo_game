@@ -54,9 +54,11 @@ bool Game::initialize()
 
 	Entity e1 = entityManager.createEntity();
 	componentManager->registerComponent<Position>();
+	componentManager->registerComponent<Velocity>();
 	componentManager->registerComponent<BoxComponent>();
 
 	componentManager->addComponent(e1, Position{ 1,1 });
+	componentManager->addComponent(e1, Velocity{ 1,1 });
 	componentManager->addComponent(e1, BoxComponent(1,1,100,100));
 
 	renderSystem.entities.insert(e1);
@@ -71,6 +73,8 @@ void Game::processInput()
 {
 
 	SDL_Event e;
+	const uint8_t* state = SDL_GetKeyboardState(NULL);
+
 	while (SDL_PollEvent(&e))
 	{
 

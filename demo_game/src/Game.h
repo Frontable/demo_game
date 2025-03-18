@@ -7,7 +7,7 @@
 #pragma once
 #include "SDL.h"
 #include "SDL_image.h"
-#include "ECS.h"
+#include "SystemManager.h"
 
 
 class Game
