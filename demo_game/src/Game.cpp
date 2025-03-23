@@ -42,11 +42,7 @@ bool Game::initialize()
 		return false;
 	}
 		
-	if (IMG_Init(IMG_INIT_PNG) == 0)
-	{
-		printf("Failed to initialize SDL Image: %s \n", SDL_GetError());
-		return false;
-	}
+	
 
 
 	renderSystem.renderer = mRenderer;
@@ -117,7 +113,6 @@ void Game::shutDown()
 
 	SDL_DestroyRenderer(mRenderer);
 	SDL_DestroyWindow(mWindow);
-	IMG_Quit();
 	SDL_Quit();
 
 }
