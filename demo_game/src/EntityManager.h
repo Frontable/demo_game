@@ -28,7 +28,7 @@ class EntityManager
 private:
 	std::unordered_map<Entity, ComponentSignature> entitySignature;
 	std::set<Entity> availableEntities;
-	Entity nextEntity = 0;
+	Entity nextEntity = 1;
 
 public:
 	Entity createEntity()
@@ -65,6 +65,11 @@ public:
 
 		entitySignature[entity] = componentSignature;
 
+	}
+
+	ComponentSignature getSignature(Entity entity)
+	{
+		return entitySignature[entity];
 	}
 
 };

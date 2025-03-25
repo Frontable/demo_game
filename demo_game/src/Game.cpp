@@ -13,7 +13,7 @@ Game::Game()
 	:mWindow(nullptr)
 	,mRenderer(nullptr)
 	,isRunning(true)
-	,componentManager(new ComponentManager())
+	,componentManager(entityManager)
 {
 
 }
@@ -43,24 +43,26 @@ bool Game::initialize()
 	}
 		
 	
+	
+	systemManager.registerSystem<RenderSystem>();
+	systemManager.getSystem<RenderSystem>()->renderer = mRenderer;
+	systemManager.getSystem<RenderSystem>()->componentManager = &componentManager;
 
-
-	renderSystem.renderer = mRenderer;
-	renderSystem.componentManager = componentManager;
 
 	Entity e1 = entityManager.createEntity();
-	componentManager->registerComponent<Position>();
-	componentManager->registerComponent<Velocity>();
-	componentManager->registerComponent<BoxComponent>();
+	entities.insert(e1);
 
-	componentManager->addComponent(e1, Position{ 1,1 });
-	componentManager->addComponent(e1, Velocity{ 1,1 });
-	componentManager->addComponent(e1, BoxComponent(1,1,100,100));
+	systemManager.getSystem<RenderSystem>()->entities = entities;
 
-	renderSystem.entities.insert(e1);
+	componentManager.registerComponent<Position>();
+	componentManager.registerComponent<Velocity>();
+	componentManager.registerComponent<BoxComponent>();
+	componentManager.addComponent(e1, Position{0.0f, 0.0f});
+	componentManager.addComponent(e1, Velocity{0.0f, 0.0f});
+	componentManager.addComponent(e1, BoxComponent(0,0,100,100));
 
 
-
+	
 	return true;
 
 }
@@ -90,6 +92,8 @@ void Game::processInput()
 void Game::update()
 {
 
+	
+
 }
 
 void Game::generateOutput()
@@ -98,7 +102,7 @@ void Game::generateOutput()
 	SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
 	SDL_RenderClear(mRenderer);
 
-	renderSystem.update();
+	systemManager.getSystem<RenderSystem>()->update();
 
 	SDL_RenderPresent(mRenderer);
 

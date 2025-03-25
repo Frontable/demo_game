@@ -28,9 +28,11 @@ private:
 
 	bool isRunning;
 
+	std::set<Entity> entities;
+
 	EntityManager entityManager;
-	ComponentManager* componentManager;
-	RenderSystem renderSystem;
+	ComponentManager componentManager;
+	SystemManager systemManager;
 
 	SDL_Window* mWindow;
 	SDL_Renderer* mRenderer;

@@ -64,19 +64,37 @@ class ComponentManager
 {
 private:
 	std::unordered_map<size_t, std::shared_ptr<IComponentArray>> componentArray;
+	std::unordered_map<size_t, size_t> componentID;
+	EntityManager& entityManager;
+	int nextComponentID = 0;
 
 public:
+
+	ComponentManager(EntityManager& em) :entityManager(em) {}
 
 	template<typename T>
 	void registerComponent()
 	{
-		componentArray[typeid(T).hash_code()] = std::make_shared<ComponentArray<T>>();
+		size_t typehash = typeid(T).hash_code();
+		if (componentID.find(typehash) == componentID.end())
+		{
+			componentID[typehash] = nextComponentID++;
+			std::cout << "ID = " << componentID[typehash] << std::endl;
+		}
+
+		componentArray[typehash] = std::make_shared<ComponentArray<T>>();
+		std::cout << "Registered component: "<< typeid(T).name() << " with ID: " << componentID[typehash] << std::endl;
+
 	}
 
 	template<typename T>
 	void addComponent(Entity entity, T component)
 	{
 		getComponentArray<T>()->add(entity, component);
+		ComponentSignature componentSignature = entityManager.getSignature(entity);
+		componentSignature.set(getComponentID<T>());
+		entityManager.setSignature(entity, componentSignature);
+		//std::cout << componentSignature << std::endl;
 	}
 
 	template<typename T>
@@ -96,6 +114,12 @@ private:
 	std::shared_ptr<ComponentArray<T>> getComponentArray()
 	{
 		return std::static_pointer_cast<ComponentArray<T>>(componentArray[typeid(T).hash_code()]);
+	}
+
+	template<typename T>
+	int getComponentID()
+	{
+		return componentID[typeid(T).hash_code()];
 	}
 
 };

@@ -16,6 +16,7 @@
 #include"Components.h"
 #include "SDL.h"
 #include "ComponentManager.h"
+#include <typeindex>
 
 
 
@@ -30,6 +31,30 @@ public:
 	virtual void update() = 0;
 };
 
+
+class SystemManager
+{
+
+private:
+	std::unordered_map<std::type_index, std::shared_ptr<System>> systems;
+
+public:
+
+	template<typename T>
+	void registerSystem()
+	{
+		systems[typeid(T)] = std::make_shared<T>();
+	}
+
+	template<typename T>
+	T* getSystem()
+	{
+		return static_cast<T*>(systems[typeid(T)].get());
+	}
+
+};
+
+
 class RenderSystem : public System
 {
 public:
@@ -39,7 +64,7 @@ public:
 
 	void update() override
 	{
-		for (auto& e : entities)
+		for (auto e : entities)
 		{
 
 			Position* pos = componentManager->getComponent<Position>(e);
