@@ -79,11 +79,11 @@ public:
 		if (componentID.find(typehash) == componentID.end())
 		{
 			componentID[typehash] = nextComponentID++;
-			std::cout << "ID = " << componentID[typehash] << std::endl;
+			//std::cout << "ID = " << componentID[typehash] << std::endl;
 		}
 
 		componentArray[typehash] = std::make_shared<ComponentArray<T>>();
-		std::cout << "Registered component: "<< typeid(T).name() << " with ID: " << componentID[typehash] << std::endl;
+		//std::cout << "Registered component: "<< typeid(T).name() << " with ID: " << componentID[typehash] << std::endl;
 
 	}
 

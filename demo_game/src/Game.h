@@ -28,7 +28,16 @@ private:
 
 	bool isRunning;
 
+	float mLastTick;
+	float mCurrTick;
+	float deltaTime;
+
+
 	std::set<Entity> entities;
+
+	Entity player;
+
+	int mouseX, mouseY;
 
 	EntityManager entityManager;
 	ComponentManager componentManager;
