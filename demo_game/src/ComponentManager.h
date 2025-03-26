@@ -15,28 +15,8 @@
 #include<typeinfo>
 #include"Components.h"
 #include "SDL.h"
+#include "EntityManager.h"
 
-
-constexpr uint32_t MaxComponents = 32;
-using Entity = uint32_t;
-using ComponentSignature = std::bitset<MaxComponents>;
-
-
-class EntityManager
-{
-private:
-	std::unordered_map<Entity, ComponentSignature> entitySignature;
-	std::set<Entity> availableEntities;
-	Entity nextEntity = 0;
-
-public:
-	Entity createEntity();
-
-	void deleteEntity(Entity entity);
-
-	void setSignature(Entity entity, ComponentSignature componentSignature);
-
-};
 
 class IComponentArray
 {
@@ -84,19 +64,37 @@ class ComponentManager
 {
 private:
 	std::unordered_map<size_t, std::shared_ptr<IComponentArray>> componentArray;
+	std::unordered_map<size_t, size_t> componentID;
+	EntityManager& entityManager;
+	int nextComponentID = 0;
 
 public:
-	
+
+	ComponentManager(EntityManager& em) :entityManager(em) {}
+
 	template<typename T>
 	void registerComponent()
 	{
-		componentArray[typeid(T).hash_code()] = std::make_shared<ComponentArray<T>>();
+		size_t typehash = typeid(T).hash_code();
+		if (componentID.find(typehash) == componentID.end())
+		{
+			componentID[typehash] = nextComponentID++;
+			//std::cout << "ID = " << componentID[typehash] << std::endl;
+		}
+
+		componentArray[typehash] = std::make_shared<ComponentArray<T>>();
+		//std::cout << "Registered component: "<< typeid(T).name() << " with ID: " << componentID[typehash] << std::endl;
+
 	}
 
 	template<typename T>
 	void addComponent(Entity entity, T component)
 	{
 		getComponentArray<T>()->add(entity, component);
+		ComponentSignature componentSignature = entityManager.getSignature(entity);
+		componentSignature.set(getComponentID<T>());
+		entityManager.setSignature(entity, componentSignature);
+		//std::cout << componentSignature << std::endl;
 	}
 
 	template<typename T>
@@ -118,33 +116,10 @@ private:
 		return std::static_pointer_cast<ComponentArray<T>>(componentArray[typeid(T).hash_code()]);
 	}
 
-};
-
-
-class System
-{
-public:
-	std::set<Entity> entities;
-	virtual void update() = 0;
-};
-
-class RenderSystem : public System
-{
-public:
-
-	SDL_Renderer* renderer;
-	ComponentManager* componentManager;
-
-	void update() override
+	template<typename T>
+	int getComponentID()
 	{
-		for (auto& e : entities)
-		{
-
-			SDL_Rect r = componentManager->getComponent<BoxComponent>(e)->box;
-			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-			SDL_RenderDrawRect(renderer, &r);
-
-		}
+		return componentID[typeid(T).hash_code()];
 	}
 
 };

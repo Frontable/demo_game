@@ -6,7 +6,7 @@
 
 #pragma once
 #include "SDL.h"
-#include "ECS.h"
+#include "SystemManager.h"
 
 
 class Game
@@ -28,9 +28,20 @@ private:
 
 	bool isRunning;
 
+	float mLastTick;
+	float mCurrTick;
+	float deltaTime;
+
+
+	std::set<Entity> entities;
+
+	Entity player;
+
+	int mouseX, mouseY;
+
 	EntityManager entityManager;
-	ComponentManager* componentManager;
-	RenderSystem renderSystem;
+	ComponentManager componentManager;
+	SystemManager systemManager;
 
 	SDL_Window* mWindow;
 	SDL_Renderer* mRenderer;
