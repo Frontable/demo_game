@@ -6,7 +6,23 @@
 
 #pragma once
 #include "SDL.h"
-#include "SystemManager.h"
+#include "ECS/SystemManager.h"
+#include "StateManager/StateManager.h"
+
+struct Context
+{
+	std::unique_ptr<StateManager> mStateManager;
+	SDL_Window* mWindow;
+	SDL_Renderer* mRenderer;
+
+	Context()
+		:mWindow(nullptr)
+		,mRenderer(nullptr)
+	{
+		mStateManager = std::make_unique<StateManager>();
+	}
+
+};
 
 
 class Game
@@ -21,6 +37,8 @@ public:
 	bool running() const { return isRunning; }
 
 private:
+
+	std::shared_ptr<Context> mContext;
 
 	void processInput();
 	void update();
@@ -43,7 +61,6 @@ private:
 	ComponentManager componentManager;
 	SystemManager systemManager;
 
-	SDL_Window* mWindow;
-	SDL_Renderer* mRenderer;
+	
 
 };
