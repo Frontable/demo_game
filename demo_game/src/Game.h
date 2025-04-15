@@ -19,7 +19,7 @@ struct Context
 		:mWindow(nullptr)
 		,mRenderer(nullptr)
 	{
-		mStateManager = std::make_unique<StateManager>();
+		mStateManager = std::make_unique<StateManager>(this);
 	}
 
 };

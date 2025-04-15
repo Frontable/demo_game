@@ -4,181 +4,95 @@
 
 
 
-
 #include "State.h"
 #include "../Game.h"
 
-MainMenuState::MainMenuState(std::shared_ptr<Context> context) : m_context(context) {}
 
-void MainMenuState::OnEnter()  
+//MAIN MENU STATE//
+MainMenuState::MainMenuState(Context* t_context)
 {
-    
-    SDL_Log("PauseState entered");
+	m_playButton = new Button(0, 0, 100, 100);
+	m_buttons.emplace_back(m_playButton);
+	m_context = t_context;
+	m_id = StateID::MainMenuID;
+	printf("%d STATE ID\n", m_id);
+	
+}
+void MainMenuState::ProcessInput(const uint8_t* t_state) 
+{
+
+	if (t_state[SDL_SCANCODE_ESCAPE])
+	{
+		m_context->mStateManager->changeState(PausedID);
+	}
+
+}
+void MainMenuState::Update(float t_deltaTime) 
+{
+	
+	SDL_GetMouseState(&mouseX, &mouseY);
+
+	printf("mouse x: %d y: %d\n", mouseX, mouseY);
+
+	if (!m_buttons.empty())
+	{
+		if (checkIfInBox(mouseX, mouseY, m_playButton->container) && SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(1))
+		{
+			delete m_playButton;
+		}
+
+		m_playButton->container.x += 100 * t_deltaTime;
+		m_playButton->container.y += 100 * t_deltaTime;
+		printf("%d\n", num);
+		num++;
+	}
+	
+}
+void MainMenuState::Render(SDL_Renderer* t_renderer) 
+{	
+	if (!m_buttons.empty())
+	{		
+		SDL_SetRenderDrawColor(t_renderer, 255, 255, 255, 255);
+		SDL_RenderDrawRect(t_renderer, &m_playButton->container);
+		
+	}
+	
+	
 }
 
-void MainMenuState::OnExit()  
+bool MainMenuState::checkIfInBox(int x, int y, SDL_Rect& box)
 {
-    
-    SDL_Log("PauseState exited");
-}
-
-void MainMenuState::OnPause()  
-{
-    
-    SDL_Log("PauseState paused");
-}
-
-void MainMenuState::OnResume()  
-{
-    
-    SDL_Log("PauseState resumed");
-}
-
-void MainMenuState::ProcessInput()  
-{
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
-            
-        }
-        else if (event.type == SDL_KEYDOWN) {
-            if (event.key.keysym.sym == SDLK_ESCAPE) {
-                
-                m_context->mStateManager->ResumePaused();
-            }
-        }
-    }
-}
-
-void MainMenuState::Update(float deltaTime)
-{
-    
-}
-
-void MainMenuState::Render() 
-{
-    
-    SDL_SetRenderDrawColor(m_context->mRenderer, 0, 0, 0, 128);
-    SDL_Rect overlay = { 0, 0, 1024, 768 };
-    SDL_RenderFillRect(m_context->mRenderer, &overlay);
-
-    
-}
-
-
-
-InGameState::InGameState(std::shared_ptr<Context> context) : m_context(context) {}
-
-void InGameState::OnEnter()
-{
-    
-    SDL_Log("PauseState entered");
-}
-
-void InGameState::OnExit()
-{
-    
-    SDL_Log("PauseState exited");
-}
-
-void InGameState::OnPause()
-{
-    
-    SDL_Log("PauseState paused");
-}
-
-void InGameState::OnResume()
-{
-    
-    SDL_Log("PauseState resumed");
-}
-
-void InGameState::ProcessInput()
-{
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
-            
-        }
-        else if (event.type == SDL_KEYDOWN) {
-            if (event.key.keysym.sym == SDLK_ESCAPE) {
-               
-                m_context->mStateManager->ResumePaused();
-            }
-        }
-    }
-}
-
-void InGameState::Update(float deltaTime)
-{
-    
-}
-
-void InGameState::Render()
-{
-   
-    SDL_SetRenderDrawColor(m_context->mRenderer, 0, 0, 0, 128);
-    SDL_Rect overlay = { 0, 0, 1024, 768 };
-    SDL_RenderFillRect(m_context->mRenderer, &overlay);
-
-    
+	if (x >= box.x && x <= box.x + box.w && y >= box.y && y <= box.y + box.h)
+	{
+		printf("INSIDE BOX");
+		return true;
+	}
+	return false;
 }
 
 
 
-PauseState::PauseState(std::shared_ptr<Context> context) : m_context(context) {}
-
-void PauseState::OnEnter()
+//PAUSED STATE//
+PausedState::PausedState(Context* t_context)
 {
-    
-    SDL_Log("PauseState entered");
+	m_context = t_context;
+	m_id = StateID::PausedID;
+	printf("%d STATE ID\n", m_id);
 }
 
-void PauseState::OnExit()
+void PausedState::ProcessInput(const uint8_t* t_state) 
 {
-    
-    SDL_Log("PauseState exited");
+	if (t_state[SDL_SCANCODE_ESCAPE])
+	{
+		m_context->mStateManager->changeState(MainMenuID);
+	}
 }
-
-void PauseState::OnPause()
+void PausedState::Update(float t_deltaTime) 
 {
-    
-    SDL_Log("PauseState paused");
+	printf("%d\n", num);
+	num--;
 }
-
-void PauseState::OnResume()
+void PausedState::Render(SDL_Renderer* t_renderer)
 {
-    
-    SDL_Log("PauseState resumed");
-}
 
-void PauseState::ProcessInput()
-{
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
-            
-        }
-        else if (event.type == SDL_KEYDOWN) {
-            if (event.key.keysym.sym == SDLK_ESCAPE) {
-                
-                m_context->mStateManager->ResumePaused();
-            }
-        }
-    }
-}
-
-void PauseState::Update(float deltaTime)
-{
-    
-}
-
-void PauseState::Render()
-{
-   
-    SDL_SetRenderDrawColor(m_context->mRenderer, 0, 0, 0, 128);
-    SDL_Rect overlay = { 0, 0, 1024, 768 };
-    SDL_RenderFillRect(m_context->mRenderer, &overlay);
-
-  
 }

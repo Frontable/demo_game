@@ -5,10 +5,98 @@
 
 
 
-#pragma once
-#include <memory>
-#include <SDL.h>
 
+
+#pragma once
+#include <iostream>
+#include <vector>
+#include "SDL.h"
+#include "../Button.h"
+
+
+enum StateID
+{
+	MainMenuID,
+	PausedID,
+	InGameID
+};
+
+class Context;
+
+class State
+{
+
+protected:
+	int mouseX, mouseY; //TO DO: will be Vec2 in future
+	Context* m_context;
+	StateID m_id;
+
+
+public:
+
+	~State() = default;
+
+	StateID getID() const { return m_id; }
+
+	virtual void ProcessInput(const uint8_t* t_state) = 0;
+	virtual void Update(float deltaTime) = 0;
+	virtual void Render(SDL_Renderer* t_renderer) = 0;
+
+};
+
+class MainMenuState : public State
+{
+private:
+	int num = 1;
+	Button* m_playButton;
+	bool active = true;
+	std::vector<Button*> m_buttons;
+public:
+	MainMenuState(Context* t_context);
+	void ProcessInput(const uint8_t* t_state) override;
+	void Update(float t_deltaTime) override;
+	void Render(SDL_Renderer* t_renderer) override;
+
+	bool checkIfInBox(int x, int y, SDL_Rect& box);
+
+};
+
+class PausedState : public State
+{
+
+private:
+	int num = 1000;
+
+public:
+
+	PausedState(Context* t_context);
+
+	void ProcessInput(const uint8_t* t_state) override;
+	void Update(float t_deltaTime) override;
+	void Render(SDL_Renderer* t_renderer) override;
+
+};
+
+class InGameState : public State
+{
+
+private:
+
+	int num = 1000;
+
+public:
+	InGameState()
+	{
+		m_id = StateID::InGameID;
+	}
+	void Update(float t_deltaTime) override
+	{
+		printf("%d\n", num);
+		num--;
+	}
+
+};
+/*
 
 struct Context;
 
@@ -30,75 +118,4 @@ public:
 protected:
     std::shared_ptr<Context> m_context;
 };
-
-class MainMenuState : public State
-{
-public:
-    MainMenuState(std::shared_ptr<Context> context);
-
-    void OnEnter() override;
-
-    void OnExit() override;
-
-    void OnPause() override;
-
-    void OnResume() override;
-
-    void ProcessInput() override;
-
-    void Update(float deltaTime) override;
-
-    void Render() override;
-
-private:
-    std::shared_ptr<Context> m_context;
-
-};
-
-class InGameState : public State
-{
-public:
-    InGameState(std::shared_ptr<Context> context);
-
-    void OnEnter() override;
-
-    void OnExit() override;
-
-    void OnPause() override;
-
-    void OnResume() override;
-
-    void ProcessInput() override;
-
-    void Update(float deltaTime) override;
-
-    void Render() override;
-
-private:
-    std::shared_ptr<Context> m_context;
-
-};
-
-class PauseState : public State
-{
-public:
-    PauseState(std::shared_ptr<Context> context);
-
-    void OnEnter() override;
-
-    void OnExit() override;
-
-    void OnPause() override;
-
-    void OnResume() override;
-
-    void ProcessInput() override;
-
-    void Update(float deltaTime) override;
-
-    void Render() override;
-
-private:
-    std::shared_ptr<Context> m_context;
-
-};
+*/

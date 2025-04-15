@@ -45,7 +45,7 @@ bool Game::initialize()
 		
 	mLastTick = SDL_GetTicks();
 	
-	mContext->mStateManager->Add(std::make_unique<MainMenuState>(mContext));
+	//mContext->mStateManager->Add(std::make_unique<MainMenuState>(mContext));
 	
 	return true;
 
@@ -69,7 +69,7 @@ void Game::processInput()
 			break;
 		}
 
-		
+		mContext->mStateManager->ProcessInput(state);
 
 	}
 
@@ -81,7 +81,7 @@ void Game::update()
 	//std::cout << deltaTime << std::endl;
 	mLastTick = SDL_GetTicks();
 	
-	
+	mContext->mStateManager->Update(deltaTime);
 
 
 }
@@ -92,6 +92,8 @@ void Game::generateOutput()
 	SDL_SetRenderDrawColor(mContext->mRenderer, 0, 0, 0, 255);
 	SDL_RenderClear(mContext->mRenderer);
 		
+	mContext->mStateManager->Render(mContext->mRenderer);
+
 	SDL_RenderPresent(mContext->mRenderer);
 
 }
@@ -99,10 +101,10 @@ void Game::generateOutput()
 void Game::run()
 {
 
-	mContext->mStateManager->ProcessStateChanges();
-	mContext->mStateManager->GetCurrent()->ProcessInput();
-	mContext->mStateManager->GetCurrent()->Update(deltaTime);
-	mContext->mStateManager->GetCurrent()->Render();
+	processInput();
+	update();
+	generateOutput();	
+	
 }
 
 void Game::shutDown()
