@@ -36,7 +36,7 @@ void MainMenuState::Update(float t_deltaTime)
 
 	if (!m_buttons.empty())
 	{
-		if (checkIfInBox(mouseX, mouseY, m_playButton->container) && SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(1))
+		if (m_playButton->wasClickedOn(mouseX, mouseY))
 		{
 			delete m_playButton;
 		}

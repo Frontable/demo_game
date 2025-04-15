@@ -29,6 +29,7 @@ struct Button
 	{
 		if (checkIfInBox(mouseX, mouseY, container) && SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(1))
 		{
+			printf("INSIDE BOXxxxxxxxxxxxxxxxxx\n");
 			return true;
 		}
 
