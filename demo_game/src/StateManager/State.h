@@ -11,7 +11,6 @@
 #include <iostream>
 #include <vector>
 #include "SDL.h"
-#include "../Button.h"
 
 
 enum StateID
@@ -22,6 +21,7 @@ enum StateID
 };
 
 class Context;
+struct Button;
 
 class State
 {
@@ -49,10 +49,12 @@ class MainMenuState : public State
 private:
 	int num = 1;
 	Button* m_playButton;
+	Button* m_exitButton;
 	bool active = true;
 	std::vector<Button*> m_buttons;
 public:
 	MainMenuState(Context* t_context);
+	~MainMenuState();
 	void ProcessInput(const uint8_t* t_state) override;
 	void Update(float t_deltaTime) override;
 	void Render(SDL_Renderer* t_renderer) override;

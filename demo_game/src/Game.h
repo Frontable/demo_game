@@ -6,8 +6,10 @@
 
 #pragma once
 #include "SDL.h"
-#include "ECS/SystemManager.h"
 #include "StateManager/StateManager.h"
+#include "ECS/EntityManager.h"
+#include "ECS/ComponentManager.h"
+#include "ECS/Components.h"
 
 struct Context
 {
@@ -29,6 +31,7 @@ class Game
 {
 public:
 	Game();
+	~Game();
 
 	bool initialize();
 	void run();
@@ -37,7 +40,7 @@ public:
 	bool running() const { return isRunning; }
 
 private:
-
+	std::vector<Entity> m_entities;
 	std::shared_ptr<Context> mContext;
 
 	void processInput();
@@ -50,16 +53,11 @@ private:
 	float mCurrTick;
 	float deltaTime;
 
+	EntityManager ent;
+	ComponentArray<Position> comp;
 
-	std::set<Entity> entities;
-
-	Entity player;
 
 	int mouseX, mouseY;
-
-	EntityManager entityManager;
-	ComponentManager componentManager;
-	SystemManager systemManager;
 
 	
 

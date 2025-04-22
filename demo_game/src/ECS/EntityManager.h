@@ -4,72 +4,75 @@
 
 
 
-
-
 #pragma once
-#include<iostream>
-#include<unordered_map>
-#include<set>
-#include<bitset>
-#include<memory>
-#include<cstdint>
-#include<typeinfo>
-#include"Components.h"
-#include "SDL.h"
+#include <cstdint>
+#include <set>
+#include <iostream>
 
-
-constexpr uint32_t MaxComponents = 32;
-using Entity = uint32_t;
-using ComponentSignature = std::bitset<MaxComponents>;
-
+using Entity = std::uint8_t;
 
 class EntityManager
 {
+
 private:
-	std::unordered_map<Entity, ComponentSignature> entitySignature;
-	std::set<Entity> availableEntities;
-	Entity nextEntity = 1;
+	std::set<Entity> m_entities;
+	std::set<Entity> m_availableEntities;
+
+	Entity m_nextEntity = 0;
+
 
 public:
+
 	Entity createEntity()
 	{
 
 
 		Entity entity;
-		if (!availableEntities.empty())
+
+		if (m_availableEntities.empty())
 		{
-			entity = *availableEntities.begin();
-			availableEntities.erase(entity);
+			entity = m_nextEntity;
+			m_entities.insert(entity);
+			m_nextEntity++;
+			printf("Entity created: %d: \n", entity);
 		}
 		else
 		{
-			entity = nextEntity++;
+			entity = *m_availableEntities.begin();
+			m_entities.insert(entity);
+			m_availableEntities.erase(entity);
+			printf("Entity created: %d: \n", entity);
 		}
 
-		entitySignature[entity] = ComponentSignature();
 		return entity;
 
-
 	}
 
-	void deleteEntity(Entity entity)
+	void deleteEntity(Entity t_entity)
 	{
 
-		entitySignature.erase(entity);
-		availableEntities.insert(entity);
+		m_entities.erase(t_entity);
+		m_availableEntities.insert(t_entity);
+		printf("Entity deleted: %d: \n", t_entity);
 
 	}
 
-	void setSignature(Entity entity, ComponentSignature componentSignature)
+	~EntityManager()
 	{
+		for (auto& e : m_entities)
+		{
+			m_entities.erase(e);
+		}
 
-		entitySignature[entity] = componentSignature;
+		for (auto& e : m_availableEntities)
+		{
+			m_availableEntities.erase(e);
+		}
 
 	}
 
-	ComponentSignature getSignature(Entity entity)
-	{
-		return entitySignature[entity];
-	}
 
 };
+
+
+

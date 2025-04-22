@@ -11,9 +11,12 @@
 
 Game::Game()
 	:isRunning(true)
-	,componentManager(entityManager)
 	,mContext(std::make_shared<Context>())
 	
+{
+}
+
+Game::~Game()
 {
 }
 
@@ -44,7 +47,15 @@ bool Game::initialize()
 	
 		
 	mLastTick = SDL_GetTicks();
-	
+	Entity e1 = ent.createEntity();
+	ent.deleteEntity(e1);
+	Entity e2 = ent.createEntity();
+	Entity e3 = ent.createEntity();
+	Position* p = new Position();
+	comp.addComponent(e1, p);
+	auto pos = comp.getComponent(e1);
+	printf("%f, %f\n", pos->x, pos->y);
+	m_entities.emplace_back(e1);
 	//mContext->mStateManager->Add(std::make_unique<MainMenuState>(mContext));
 	
 	return true;
@@ -83,6 +94,13 @@ void Game::update()
 	
 	mContext->mStateManager->Update(deltaTime);
 
+	for (auto e : m_entities)
+	{
+		auto pos = comp.getComponent(e);
+		pos->x += 1;
+		printf("%f, %f\n", pos->x, pos->y);
+	}
+	
 
 }
 

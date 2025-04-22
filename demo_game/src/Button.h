@@ -6,45 +6,20 @@
 
 
 
+#pragma once  
+#include <iostream>  
+#include "StateManager/State.h"  
 
+struct Button  
+{  
 
-#pragma once
-#include <iostream>
-#include "SDL.h"
+   SDL_Rect container;  
 
-struct Button
-{
+   Button(int t_x, int t_y, int t_w, int t_h);
 
-	SDL_Rect container;
+   bool wasClickedOn(int mouseX, int mouseY);  
 
-	Button(int t_x, int t_y, int t_w, int t_h)
-	{
-		container.x = t_x;
-		container.y = t_y;
-		container.w = t_w;
-		container.h = t_h;
-	}
+   bool checkIfInBox(int x, int y, SDL_Rect& container);  
 
-	bool wasClickedOn(int mouseX, int mouseY)
-	{
-		if (checkIfInBox(mouseX, mouseY, container) && SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(1))
-		{
-			printf("INSIDE BOXxxxxxxxxxxxxxxxxx\n");
-			return true;
-		}
-
-		return false;
-
-	}
-	bool checkIfInBox(int x, int y, SDL_Rect& container)
-	{
-		if (x >= container.x && x <= container.x + container.w && y >= container.y && y <= container.y + container.h)
-		{
-			printf("INSIDE BOX");
-			return true;
-		}
-		return false;
-	}
-	
-
+   void clickOnFunction();  
 };

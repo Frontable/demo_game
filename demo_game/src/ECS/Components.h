@@ -7,10 +7,17 @@
 
 #pragma once
 #include "SDL.h"
+#include <iostream>
 
 struct Position
 {
 	float x, y;
+	Position()
+	{
+		x = 1;
+		y = 0;
+		printf("Position component created.\n");
+	}
 };
 
 struct Velocity
