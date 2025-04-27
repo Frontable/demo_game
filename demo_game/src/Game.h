@@ -6,24 +6,15 @@
 
 #pragma once
 #include "SDL.h"
-#include "StateManager/StateManager.h"
 #include "ECS/EntityManager.h"
 #include "ECS/ComponentManager.h"
 #include "ECS/Components.h"
+#include "Grid.h"
 
-struct Context
+enum State
 {
-	std::unique_ptr<StateManager> mStateManager;
-	SDL_Window* mWindow;
-	SDL_Renderer* mRenderer;
-
-	Context()
-		:mWindow(nullptr)
-		,mRenderer(nullptr)
-	{
-		mStateManager = std::make_unique<StateManager>(this);
-	}
-
+	MAINMENU,
+	INGAME
 };
 
 
@@ -39,9 +30,21 @@ public:
 
 	bool running() const { return isRunning; }
 
+	void processMenuInput(SDL_Event e, const uint8_t* state, int t_mouseX, int t_mouseY);
+	void updateMenuState();
+	void generateMenuOutput();
+
+	void processInGameInput(SDL_Event e, const uint8_t* state, int t_mouseX, int t_mouseY);
+	void updateInGameState();
+	void generateInGameOutput();
+
 private:
 	std::vector<Entity> m_entities;
-	std::shared_ptr<Context> mContext;
+
+	State m_state;
+
+	SDL_Window* mWindow;
+	SDL_Renderer* mRenderer;
 
 	void processInput();
 	void update();
@@ -54,11 +57,13 @@ private:
 	float deltaTime;
 
 	EntityManager ent;
-	ComponentArray<Position> comp;
+	ComponentManager comp;
 
+	int m_screenWidth;
+	int m_screenHeight;
 
 	int mouseX, mouseY;
 
-	
+	Grid<32> grid;
 
 };

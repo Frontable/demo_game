@@ -10,7 +10,7 @@
 
 
 
-
+/*
 #include "Button.h"
 #include "StateManager/State.h"
 
@@ -48,4 +48,4 @@ void Button::clickOnFunction()
 
 }
 
-//
+*/

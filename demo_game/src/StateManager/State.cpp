@@ -4,19 +4,20 @@
 
 
 
+/*
 #include "State.h"
 #include "../Game.h"
 #include "../Button.h"
 
 
 //MAIN MENU STATE//
-MainMenuState::MainMenuState(Context* t_context)
+MainMenuState::MainMenuState(Game* t_game)
 {
 	m_playButton = new Button(100, 100, 100, 100);
 	m_exitButton = new Button(100, 300, 100, 100);
 	m_buttons.emplace_back(m_playButton);
 	m_buttons.emplace_back(m_exitButton);
-	m_context = t_context;
+	m_game= t_game;
 	m_id = StateID::MainMenuID;
 	//printf("%d STATE ID\n", m_id);
 	
@@ -38,7 +39,7 @@ void MainMenuState::ProcessInput(const uint8_t* t_state)
 
 	if (t_state[SDL_SCANCODE_ESCAPE])
 	{
-		m_context->mStateManager->changeState(PausedID);
+		m_game->getStateManager()->changeState(PausedID);
 	}
 
 }
@@ -54,11 +55,11 @@ void MainMenuState::Update(float t_deltaTime)
 	{
 		if (m_playButton->wasClickedOn(mouseX, mouseY))
 		{
-			m_context->mStateManager->changeState(PausedID);
+			m_game->getStateManager()->changeState(PausedID);
 		}
 		if (m_exitButton->wasClickedOn(mouseX, mouseY))
 		{
-			m_context->mStateManager->changeState(PausedID);
+			m_game->getStateManager()->changeState(PausedID);
 		}
 	}
 
@@ -93,9 +94,9 @@ bool MainMenuState::checkIfInBox(int x, int y, SDL_Rect& box)
 
 
 //PAUSED STATE//
-PausedState::PausedState(Context* t_context)
+PausedState::PausedState(Game* t_game)
 {
-	m_context = t_context;
+	m_game = t_game;
 	m_id = StateID::PausedID;
 	//printf("%d STATE ID\n", m_id);
 }
@@ -104,7 +105,7 @@ void PausedState::ProcessInput(const uint8_t* t_state)
 {
 	if (t_state[SDL_SCANCODE_ESCAPE])
 	{
-		m_context->mStateManager->changeState(MainMenuID);
+		m_game->getStateManager()->changeState(MainMenuID);
 	}
 }
 void PausedState::Update(float t_deltaTime) 
@@ -116,3 +117,4 @@ void PausedState::Render(SDL_Renderer* t_renderer)
 {
 
 }
+*/

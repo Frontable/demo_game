@@ -4,6 +4,7 @@
 
 
 
+/*
 #pragma once
 #include "State.h"
 #include <vector>
@@ -20,13 +21,13 @@ private:
 
 public:
 
-	StateManager(Context* t_context)
+	StateManager(Game* t_owner)
 		:m_currentState(nullptr)
 	{
-		MainMenuState* mms = new MainMenuState(t_context);
+		MainMenuState* mms = new MainMenuState(t_owner);
 		m_states[MainMenuID] = mms;
 		m_currentState = mms;
-		PausedState* ps = new PausedState(t_context);
+		PausedState* ps = new PausedState(t_owner);
 		m_states[PausedID] = ps;
 
 	}
@@ -67,3 +68,4 @@ public:
 	}
 
 };
+*/

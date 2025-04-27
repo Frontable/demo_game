@@ -12,10 +12,18 @@
 struct Position
 {
 	float x, y;
+
 	Position()
 	{
-		x = 1;
+		x = 0;
 		y = 0;
+		printf("Position component created.\n");
+	}
+
+	Position(float t_x, float t_y)
+	{
+		x = t_x;
+		y = t_y;
 		printf("Position component created.\n");
 	}
 };

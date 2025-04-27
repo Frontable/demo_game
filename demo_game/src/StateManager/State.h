@@ -6,7 +6,7 @@
 
 
 
-
+/*
 #pragma once
 #include <iostream>
 #include <vector>
@@ -20,7 +20,7 @@ enum StateID
 	InGameID
 };
 
-class Context;
+class Game;
 struct Button;
 
 class State
@@ -28,7 +28,7 @@ class State
 
 protected:
 	int mouseX, mouseY; //TO DO: will be Vec2 in future
-	Context* m_context;
+	Game* m_game;
 	StateID m_id;
 
 
@@ -53,7 +53,7 @@ private:
 	bool active = true;
 	std::vector<Button*> m_buttons;
 public:
-	MainMenuState(Context* t_context);
+	MainMenuState(Game* t_game);
 	~MainMenuState();
 	void ProcessInput(const uint8_t* t_state) override;
 	void Update(float t_deltaTime) override;
@@ -71,7 +71,7 @@ private:
 
 public:
 
-	PausedState(Context* t_context);
+	PausedState(Game* t_game);
 
 	void ProcessInput(const uint8_t* t_state) override;
 	void Update(float t_deltaTime) override;
@@ -98,7 +98,7 @@ public:
 	}
 
 };
-/*
+
 
 struct Context;
 
