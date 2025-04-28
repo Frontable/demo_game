@@ -10,6 +10,7 @@
 #include "ECS/ComponentManager.h"
 #include "ECS/Components.h"
 #include "Grid.h"
+#include "Fruit.h"
 
 enum State
 {
@@ -43,8 +44,8 @@ private:
 
 	State m_state;
 
-	SDL_Window* mWindow;
-	SDL_Renderer* mRenderer;
+	SDL_Window* m_window;
+	SDL_Renderer* m_renderer;
 
 	void processInput();
 	void update();
@@ -65,5 +66,7 @@ private:
 	int mouseX, mouseY;
 
 	Grid<32> grid;
+
+	Fruit* fruit;
 
 };

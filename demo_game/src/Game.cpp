@@ -8,10 +8,11 @@
 
 #include "Game.h"
 #include <iostream>
+#include <cstdlib>
 
 Game::Game() 
-	:mWindow(nullptr)
-	,mRenderer(nullptr)
+	:m_window(nullptr)
+	, m_renderer(nullptr)
 	,isRunning(true)
 	,m_screenWidth(1024)
 	,m_screenHeight(768)
@@ -36,15 +37,15 @@ bool Game::initialize()
 		return false;
 	}
 
-	mWindow = SDL_CreateWindow("Game", 100, 100, m_screenWidth, m_screenHeight, 0);
-	if (mWindow == NULL)
+	m_window = SDL_CreateWindow("Game", 100, 100, m_screenWidth, m_screenHeight, 0);
+	if (m_window == NULL)
 	{
 		printf("Failed to create window: %s \n", SDL_GetError());
 		return false;
 	}
 
-	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (mRenderer == NULL)
+	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (m_renderer == NULL)
 	{
 		printf("Failed to create renderer: %s \n", SDL_GetError());
 		return false;
@@ -63,6 +64,12 @@ bool Game::initialize()
 
 	//mContext->mStateManager->Add(std::make_unique<MainMenuState>(mContext));
 	
+	
+	int i = rand() % grid.getGridWidth();
+	int j = rand() % grid.getGridHeight();
+	auto box = grid.getBox(i, j);
+	fruit = new Fruit(box);
+	printf("WIDTH: %d ---------- HEIGHT: %d\n", i, j);
 
 	return true;
 
@@ -138,24 +145,26 @@ void Game::update()
 	}
 
 	
+	
 
 	for (auto e : m_entities)
 	{
-		
+		/*
 		Position* pos = comp.getComponent<Position>(e);
 		printf("%f\n", pos->x);
+		*/
 
 	}
 }
 
 void Game::updateMenuState()
 {
-	printf("MAINE MENU\N");
+	//printf("MAINE MENU\n");
 }
 
 void Game::updateInGameState()
 {
-	printf("IN GAME\N");
+	//printf("IN GAME\n");
 }
 
 /// 
@@ -164,14 +173,24 @@ void Game::updateInGameState()
 void Game::generateOutput()
 {
 
-	SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
-	SDL_RenderClear(mRenderer);
+	SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
+	SDL_RenderClear(m_renderer);
 		
 	
+	switch (m_state)
+	{
+	case MAINMENU:
+		generateMenuOutput();
+		break;
+	case INGAME:
+		generateInGameOutput();
+		break;
+	default:
+		break;
+	}
+	
 
-	grid.print(mRenderer);
-
-	SDL_RenderPresent(mRenderer);
+	SDL_RenderPresent(m_renderer);
 
 }
 
@@ -182,7 +201,8 @@ void Game::generateMenuOutput()
 
 void Game::generateInGameOutput()
 {
-
+	grid.print(m_renderer);
+	fruit->printFruit(m_renderer);
 }
 
 void Game::run()
@@ -197,10 +217,10 @@ void Game::run()
 void Game::shutDown()
 {
 
-	
+	delete fruit;
 
-	SDL_DestroyRenderer(mRenderer);
-	SDL_DestroyWindow(mWindow);
+	SDL_DestroyRenderer(m_renderer);
+	SDL_DestroyWindow(m_window);
 	SDL_Quit();
 
 }

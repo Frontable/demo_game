@@ -18,7 +18,6 @@ private:
 
 	int m_gridBoxWidth;
 	int m_gridBoxHeight;
-	int m_boxes;
 
 	SDL_Rect r{ 0,0,0,0 };
 
@@ -33,11 +32,6 @@ public:
 		,m_gridBoxHeight(t_screenHeight / box)
 		
 	{
-		//grid[0][0].x += 100;
-		//grid[0][0].y += 100;
-
-		
-
 		for (int i = 0; i < box; i++)
 		{
 			for (int j = 1; j < box; j++)
@@ -46,9 +40,23 @@ public:
 				grid[i][j].y = j * m_gridBoxWidth;
 				grid[i][j].w = m_gridBoxWidth;
 				grid[i][j].h = m_gridBoxWidth;
-			}
-			
+			}			
 		}
+	}	
+
+	SDL_Rect getBox(int t_width, int t_height)
+	{
+		return grid[t_width][t_height];
+	}
+
+	int getGridWidth() const
+	{
+		return m_gridBoxWidth;
+	}
+
+	int getGridHeight() const
+	{
+		return m_gridBoxHeight;
 	}
 
 	void print(SDL_Renderer* t_renderer)
@@ -102,8 +110,6 @@ public:
 	void clickOnFunction()
 	{
 
-	}
-
-	
+	}	
 
 };
