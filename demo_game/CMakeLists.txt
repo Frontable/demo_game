@@ -11,7 +11,7 @@ project(Game_test)
 
 find_package(SDL2 REQUIRED)
 
-add_executable(${PROJECT_NAME} src/Main.cpp src/Game.cpp "src/StateManager/StateManager.cpp" 
+add_executable(${PROJECT_NAME} src/Main.cpp src/Game.cpp "src/StateManager/StateMachine.cpp" 
 	"src/StateManager/State.cpp" "src/Button.h" "src/Button.cpp" "src/ECS/EntityManager.h" 
 	"src/ECS/ComponentManager.h" "src/ECS/Components.h" "src/Grid.h" "src/Fruit.h")
 

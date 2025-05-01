@@ -9,64 +9,39 @@
 #include "ECS/EntityManager.h"
 #include "ECS/ComponentManager.h"
 #include "ECS/Components.h"
+#include "StateManager/StateMachine.h"
 #include "Grid.h"
 #include "Fruit.h"
-
-enum State
-{
-	MAINMENU,
-	INGAME
-};
+#include <memory>
 
 
 class Game
 {
 public:
-	Game();
-	~Game();
+    Game(const char* title, int width, int height);
+    virtual ~Game();
 
-	bool initialize();
-	void run();
-	void shutDown();
+    void run();
 
-	bool running() const { return isRunning; }
+protected:
+    SDL_Window* m_window;
+    SDL_Renderer* m_renderer;
+    //std::unique_ptr<Window> m_window;
+    EntityManager m_entityManager;
+    ComponentManager m_componentManager;
+    StateMachine m_stateMachine;
 
-	void processMenuInput(SDL_Event e, const uint8_t* state, int t_mouseX, int t_mouseY);
-	void updateMenuState();
-	void generateMenuOutput();
+    float m_deltaTime{ 0.0f };
+    bool m_isRunning{ true };
 
-	void processInGameInput(SDL_Event e, const uint8_t* state, int t_mouseX, int t_mouseY);
-	void updateInGameState();
-	void generateInGameOutput();
+    // Core methods to be implemented by derived games
+    virtual void initialize() = 0;
+    virtual void processInput(SDL_Event& event) = 0;
+    virtual void update(float deltaTime) = 0;
+    virtual void render() = 0;
+    virtual void shutDown() = 0;
 
 private:
-	std::vector<Entity> m_entities;
-
-	State m_state;
-
-	SDL_Window* m_window;
-	SDL_Renderer* m_renderer;
-
-	void processInput();
-	void update();
-	void generateOutput();
-
-	bool isRunning;
-
-	float mLastTick;
-	float mCurrTick;
-	float deltaTime;
-
-	EntityManager ent;
-	ComponentManager comp;
-
-	int m_screenWidth;
-	int m_screenHeight;
-
-	int mouseX, mouseY;
-
-	Grid<32> grid;
-
-	Fruit* fruit;
-
+    void calculateDeltaTime();
+    Uint32 m_lastTick{ 0 };
 };

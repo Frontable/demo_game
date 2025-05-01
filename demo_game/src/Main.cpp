@@ -9,18 +9,17 @@
 
 
 
+#include "App.h"
+
+
+
 int main(int argc, char* argv[]) {
     
     
-    Game game;
+    App game;
     game.initialize();
-
-    while (game.running())
-    {
-        game.run();
-    }
-
-    game.shutDown();
-
+    
+    game.run();    
+    
     return 0;
 }
