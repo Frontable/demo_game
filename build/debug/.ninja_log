@@ -1,0 +1,15 @@
+# ninja log v6
+14	413	7683531447539408	Engine/CMakeFiles/Engine.dir/src/console.cpp.obj	f07503221e35d234
+19	781	7683930200003453	CMakeFiles/Test.dir/main.cpp.obj	dc5b4e5daaa7fc48
+19	676	7683939717965514	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	d2d4810ff15bb15d
+748	895	7683930207297478	D:/Projects/CMake/bin/Windows/64/Debug/Engine.dll	68e2bd8ba0401269
+748	895	7683930207297478	D:/Projects/CMake/bin/Windows/64/Debug/static libs/Engine.lib	68e2bd8ba0401269
+20	174	7682725120615986	build.ninja	b01e6b16220324a4
+17	33	7683531447143054	clean	8c45b54705a541e8
+895	1365	7683930208769078	D:/Projects/CMake/bin/Windows/64/Debug/Test.exe	db86e73336b64d0a
+22	338	7683531447614537	Engine/CMakeFiles/Engine.dir/src/StateManager/State.cpp.obj	aa49af3beb6ea36c
+5	719	7683942170209377	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	d2d4810ff15bb15d
+9	734	7683942170239427	CMakeFiles/Test.dir/main.cpp.obj	dc5b4e5daaa7fc48
+720	883	7683942177355488	D:/Projects/CMake/bin/Windows/64/Debug/Engine.dll	68e2bd8ba0401269
+720	883	7683942177355488	D:/Projects/CMake/bin/Windows/64/Debug/static libs/Engine.lib	68e2bd8ba0401269
+883	1175	7683942178986273	D:/Projects/CMake/bin/Windows/64/Debug/Test.exe	db86e73336b64d0a
