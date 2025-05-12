@@ -1,14 +1,14 @@
 # ninja log v6
-35	397	7684309891413732	Engine/CMakeFiles/Engine.dir/src/StateManager/State.cpp.obj	7810bf975a929c51
-25	237	7687725960236829	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
-23	480	7684309891293339	Engine/CMakeFiles/Engine.dir/src/console.cpp.obj	186e6730a9d38b80
-15	550	7687725711939819	CMakeFiles/Test.dir/main.cpp.obj	90d01f12af094ec2
-7	716	7687725711854044	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+24	670	7687740968086414	Engine/CMakeFiles/Engine.dir/src/StateManager/State.cpp.obj	7810bf975a929c51
+1227	1436	7687740980111662	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+13	777	7687740967971147	Engine/CMakeFiles/Engine.dir/src/console.cpp.obj	186e6730a9d38b80
+17	1124	7687740968011204	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+33	920	7687740968167155	CMakeFiles/Test.dir/main.cpp.obj	90d01f12af094ec2
 6	20	7684250609270521	clean	8c45b54705a541e8
-25	237	7687725960236829	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
 14	340	7684304560058606	Engine/CMakeFiles/Engine.dir/src/ECS/EntityManager.cpp.obj	96fab56622b84d7c
-723	963	7687725967210440	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
-17	162	7687730759975023	build.ninja	d82297b3728ca10e
-11	802	7687725711894047	Engine/CMakeFiles/Engine.dir/src/ECS/ECS.cpp.obj	582eec55dfc6d05
-21	723	7687725960193135	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
-9	379	7687068904693035	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e
+1227	1436	7687740980111662	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+1436	1677	7687740982198921	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
+16	138	7687745790412299	build.ninja	d82297b3728ca10e
+21	1226	7687740968046387	Engine/CMakeFiles/Engine.dir/src/ECS/ECS.cpp.obj	582eec55dfc6d05
+37	1143	7687740968212217	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+29	789	7687740968122500	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e

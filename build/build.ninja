@@ -90,8 +90,9 @@ build D$:\Projects\Engine\bin\Windows\64\Debug\Test.exe: CXX_EXECUTABLE_LINKER__
 # Utility command for edit_cache
 
 build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Projects\Engine\build && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Projects\Engine\build && "C:\Program Files\CMake\bin\cmake-gui.exe" -SD:\Projects\Engine -BD:\Projects\Engine\build"
+  DESC = Running CMake cache editor...
+  pool = console
   restat = 1
 
 build edit_cache: phony CMakeFiles\edit_cache.util
@@ -193,8 +194,9 @@ build D$:\Projects\Engine\bin\Windows\64\Debug\Engine.dll D$:\Projects\Engine\bi
 # Utility command for edit_cache
 
 build Engine\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Projects\Engine\build\Engine && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Projects\Engine\build\Engine && "C:\Program Files\CMake\bin\cmake-gui.exe" -SD:\Projects\Engine -BD:\Projects\Engine\build"
+  DESC = Running CMake cache editor...
+  pool = console
   restat = 1
 
 build Engine\edit_cache: phony Engine\CMakeFiles\edit_cache.util
