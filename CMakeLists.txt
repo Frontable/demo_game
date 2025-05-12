@@ -30,7 +30,7 @@ add_subdirectory(Engine)
 
 
 
-add_executable(${PROJECT_NAME}  main.cpp)
+add_executable(${PROJECT_NAME}  main.cpp "App.h" "App.cpp")
 
 target_link_libraries(${PROJECT_NAME} Engine)
 

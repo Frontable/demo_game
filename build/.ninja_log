@@ -1,0 +1,82 @@
+# ninja log v6
+35	397	7684309891413732	Engine/CMakeFiles/Engine.dir/src/StateManager/State.cpp.obj	7810bf975a929c51
+586	744	7687057012754335	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	8ec64d7d92f8d450
+23	480	7684309891293339	Engine/CMakeFiles/Engine.dir/src/console.cpp.obj	186e6730a9d38b80
+9	495	7687056255656103	CMakeFiles/Test.dir/main.cpp.obj	90d01f12af094ec2
+6	585	7687057006958800	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+6	20	7684250609270521	clean	8c45b54705a541e8
+586	744	7687057012754335	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	8ec64d7d92f8d450
+14	340	7684304560058606	Engine/CMakeFiles/Engine.dir/src/ECS/EntityManager.cpp.obj	96fab56622b84d7c
+811	995	7687056263670330	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
+17	162	7687061555204539	build.ninja	d82297b3728ca10e
+23	712	7687052848155646	Engine/CMakeFiles/Engine.dir/src/ECS/ECS.cpp.obj	582eec55dfc6d05
+12	660	7687056255690636	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+21	155	7687062654198358	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e
+16	652	7687062654146221	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+653	874	7687062660509798	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+653	874	7687062660509798	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+61	215	7687062979915217	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e
+65	589	7687062979959861	CMakeFiles/Test.dir/main.cpp.obj	90d01f12af094ec2
+21	752	7687062979861966	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+69	794	7687062979999853	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+752	935	7687062988212025	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+752	935	7687062988212025	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+935	1140	7687062988652011	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
+27	512	7687063348460837	CMakeFiles/Test.dir/main.cpp.obj	90d01f12af094ec2
+23	678	7687063348420800	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+31	696	7687063348490841	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+679	835	7687063354975462	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+679	835	7687063354975462	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+835	1092	7687063356533429	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
+19	627	7687063588805001	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+627	778	7687063594883044	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+627	778	7687063594883044	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+6	601	7687063811969451	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+601	762	7687063817934749	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+601	762	7687063817934749	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+25	416	7687064193762092	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e
+21	614	7687064193722023	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+614	808	7687064199660279	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+614	808	7687064199660279	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+23	425	7687065095396426	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e
+27	541	7687065095426432	CMakeFiles/Test.dir/main.cpp.obj	90d01f12af094ec2
+19	714	7687065095356421	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+31	730	7687065095471062	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+715	857	7687065102302279	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+715	857	7687065102302279	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+857	1050	7687065103725701	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
+17	358	7687065337939903	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e
+359	512	7687065341355518	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+359	512	7687065341355518	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+18	393	7687065447408570	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e
+394	547	7687065451166964	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+394	547	7687065451166964	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+30	552	7687066234915898	CMakeFiles/Test.dir/main.cpp.obj	90d01f12af094ec2
+22	694	7687066234845908	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+34	705	7687066234955429	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+20	402	7687066548916373	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e
+403	594	7687066554211701	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+403	594	7687066554211701	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+594	792	7687066554653729	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
+6	737	7687066897682796	Engine/CMakeFiles/Engine.dir/src/ECS/ECS.cpp.obj	582eec55dfc6d05
+738	900	7687066904999654	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+738	900	7687066904999654	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+23	562	7687068402286436	CMakeFiles/Test.dir/main.cpp.obj	90d01f12af094ec2
+19	737	7687068402246451	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+27	747	7687068402329104	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+737	898	7687068409436753	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+737	898	7687068409436753	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+899	1077	7687068411044441	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
+23	683	7687068577458113	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+684	849	7687068584072207	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+684	849	7687068584072207	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+9	379	7687068904693035	Engine/CMakeFiles/Engine.dir/Timer.cpp.obj	341f69afe09441e
+5	684	7687068904663018	Engine/CMakeFiles/Engine.dir/src/Game.cpp.obj	74db3f7b15928ba4
+13	710	7687068904733055	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+685	841	7687068911451503	D:/Projects/Engine/bin/Windows/64/Debug/Engine.dll	4383947d402344e4
+685	841	7687068911451503	D:/Projects/Engine/bin/Windows/64/Debug/static libs/Engine.lib	4383947d402344e4
+841	1040	7687068913014454	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
+6	661	7687069119115998	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+661	863	7687069125657808	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
+9	680	7687069962589333	CMakeFiles/Test.dir/App.cpp.obj	ddfafcce74cfff7
+680	931	7687069969300557	D:/Projects/Engine/bin/Windows/64/Debug/Test.exe	5a58f1a102a7c365
