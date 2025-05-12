@@ -42,15 +42,15 @@ void App::initialize()
         Entity entity = m_ecs.createEntity();
 
         RigidBody2D rb;
-        rb.x = rand() % 1000; // random x within screen width
-        rb.y = rand() % 700;  // random y within screen height
-        rb.vx = 100;
-        rb.vy = 100;
+        rb.position.x = rand() % 1000; // random x within screen width
+        rb.position.y = rand() % 700;  // random y within screen height
+        rb.velocity.x = 100;
+        rb.velocity.y = 100;
         m_ecs.addComponent(entity, rb);
 
         SpriteComponent sprite;
-        sprite.box.x = static_cast<int>(rb.x);
-        sprite.box.y = static_cast<int>(rb.y);
+        sprite.box.x = static_cast<int>(rb.position.x);
+        sprite.box.y = static_cast<int>(rb.position.y);
         sprite.box.w = 100;
         sprite.box.h = 100;
         m_ecs.addComponent(entity, sprite);        

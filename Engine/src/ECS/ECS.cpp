@@ -67,28 +67,28 @@ void MovementSystem::update(float deltaTime)
         for (auto& entity : m_entities)
         {
             auto& pos = ecs->getComponent<RigidBody2D>(entity);
-            pos.x += pos.vx * deltaTime;
-            pos.y += pos.vy * deltaTime;
+            pos.position.x += pos.velocity.x * deltaTime;
+            pos.position.y += pos.velocity.y * deltaTime;
 
-            if (pos.x >= 900)
+            if (pos.position.x >= 900)
             {
-                pos.x = 900;
-                pos.vx *= -1;
+                pos.position.x = 900;
+                pos.velocity.x *= -1;
             }
-            if (pos.x <= 0)
+            if (pos.position.x <= 0)
             {
-                pos.vx *= -1;
-                pos.x = 0;
+                pos.velocity.x *= -1;
+                pos.position.x = 0;
             }
-            if (pos.y >= 500)
+            if (pos.position.y >= 500)
             {
-                pos.vy *= -1;
-                pos.y = 500;
+                pos.velocity.y *= -1;
+                pos.position.y = 500;
             }
-            if (pos.y <= 0)
+            if (pos.position.y <= 0)
             {
-                pos.vy *= -1;
-                pos.y = 0;
+                pos.velocity.y *= -1;
+                pos.position.y = 0;
             }
 
         }             
@@ -104,8 +104,8 @@ void SpriteSystem::update(SDL_Renderer* renderer)
             auto& pos = ecs->getComponent<RigidBody2D>(entity);
             auto& sprite = ecs->getComponent<SpriteComponent>(entity);
 
-            sprite.box.x = static_cast<int>(pos.x);
-            sprite.box.y = static_cast<int>(pos.y);
+            sprite.box.x = static_cast<int>(pos.position.x);
+            sprite.box.y = static_cast<int>(pos.position.y);
             sprite.box.w = 100;
             sprite.box.h = 100;
 
@@ -125,13 +125,13 @@ void InputSystem::update(float deltaTime, const uint8_t* state)
         {
             auto& pos = ecs->getComponent<RigidBody2D>(entity);
 
-            if (state[SDL_SCANCODE_W]) pos.vy = -1;
-            else if (state[SDL_SCANCODE_S]) pos.vy = 1;
-            else pos.vy = 0;
+            if (state[SDL_SCANCODE_W]) pos.velocity.y = -1;
+            else if (state[SDL_SCANCODE_S]) pos.velocity.y = 1;
+            else pos.velocity.y = 0;
 
-            if (state[SDL_SCANCODE_A]) pos.vx = -1;
-            else if (state[SDL_SCANCODE_D]) pos.vx = 1;
-            else pos.vx = 0;
+            if (state[SDL_SCANCODE_A]) pos.velocity.x = -1;
+            else if (state[SDL_SCANCODE_D]) pos.velocity.x = 1;
+            else pos.velocity.x = 0;
 
         }
     }

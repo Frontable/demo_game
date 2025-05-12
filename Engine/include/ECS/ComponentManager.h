@@ -14,6 +14,7 @@
 #include <memory>
 #include <typeinfo>
 #include <iostream>
+#include "Math/Math.h"
 
 #include "SDL.h"
 
@@ -29,8 +30,8 @@
 
 
 struct RigidBody2D {
-    int x = 0, y = 0;
-    int vx = 1, vy = 1;
+    Vector2 position;
+    Vector2 velocity;
 };
 
 struct SpriteComponent
